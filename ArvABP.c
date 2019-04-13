@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "Arv.h"
+
+Arvore* criarArv(){
+    return NULL;
+}
+void inserir(Arvore *arv, int dado){
+    Arvore aux = arv;
+    if(!aux){
+        aux = (Arvore *)malloc(sizeof(Arvore));
+        aux->sae = NULL;
+        aux->sad = NULL;
+        aux->dado = dado;
+    }
+    if(dado > aux->dado){
+        inserir(aux->sad,dado);
+    }else{
+        inserir(aux->sae,dado);
+    }
+}
+
+int buscarnaArv(Arvore *arv, int chave){
+    if(!arv){
+        return 0;
+    }
+    if(arv->dado == chave){
+        return 1;
+    }else{
+        if(chave > arv->dado){
+            buscarnaArv(arv->sad,chave);
+        }else{
+            buscarnaArv(arv->sae,chave);
+        }
+    }    
+}
+int verifArv(Arvore *arv){
+    return arv == NULL;
+}
+void mostrarArvemOrdem(Arvore *arv){
+    if(!arv){
+        mostrarArv(arv->sae);
+        printf("%d",arv->dado);
+        mostrarArv(arv->sad);
+    }
+}
+
+void mostrarArvemPre_Ordem(Arvore *arv){
+    if(!arv){
+        printf("%d",arv->dado);
+        mostrarArv(arv->sae);
+        mostrarArv(arv->sad);
+    }
+}
+
+void mostrarArvemPos_Ordem(Arvore *arv){
+    if(!arv){
+        mostrarArv(arv->sae);
+        mostrarArv(arv->sad);
+        printf("%d",arv->dado);
+    }
+}
