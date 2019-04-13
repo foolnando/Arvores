@@ -60,3 +60,16 @@ void mostrarArvemPos_Ordem(Arvore *arv){
         printf("%d",arv->dado);
     }
 }
+
+int alturaArv(Arvore *arv){
+    if(!arv){
+        return 0;
+    }
+    int ae = alturaArv(arv->esq);
+    int ad = alturaArv(arv->dir);
+    if(ae>ad){
+        return ae+1;
+    }else{
+        return ad+1;
+    }
+}
